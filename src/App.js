@@ -7,10 +7,12 @@ import './App.css';
 
 function App() {
   return (
-    <Switch>
-      <Route exact path="/" component={ Login } />
-      <Route exact path="/carteira" component={ Wallet } />
-    </Switch>
+    <div>
+      <Switch>
+        <Route exact path="/" component={ Login } />
+        <Route exact path="/carteira" component={ Wallet } />
+      </Switch>
+    </div>
   );
 }
 

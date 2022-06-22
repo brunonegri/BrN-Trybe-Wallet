@@ -14,11 +14,10 @@ class Login extends React.Component {
     const { value, name } = target;
     this.setState({
       [name]: value,
-    });
-    this.enableBtn();
+    }, () => this.enableBtn());
   };
 
-  handleClick() {
+  handleClick = () => {
     const { history, dispatchLogin } = this.props;
     const { email } = this.state;
 
@@ -28,9 +27,9 @@ class Login extends React.Component {
     // console.log('clicou');
   }
 
-  enableBtn() {
+  enableBtn=() => {
     const { email, password } = this.state;
-    const numPassword = 5;
+    const numPassword = 6;
     const emailValidate = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const passwordValidate = password.length >= numPassword;
     const validate = emailValidate.test(email) && passwordValidate;
@@ -81,13 +80,11 @@ class Login extends React.Component {
   }
 }
 
-Login.defaultProps = {
-  history: {},
-};
-
 Login.propTypes = {
   dispatchLogin: PropTypes.func.isRequired,
-  history: PropTypes.objectOf(PropTypes.any),
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({
