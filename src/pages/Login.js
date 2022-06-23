@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import userLogin from '../actions';
+import { userLogin } from '../actions';
 
 class Login extends React.Component {
   state = {
@@ -40,7 +40,7 @@ class Login extends React.Component {
   }
 
   render() {
-    console.log(this.props);
+    // console.log(this.props);
     const { email, password, disableBtn } = this.state;
     return (
       <div>

@@ -1,3 +1,5 @@
 const LOGIN = 'LOGIN';
+const GET_CURRENCYS = 'GET_CURRENCYS';
+const ADD_EXPENSES = 'GET_EXPENSES';
 
-export default LOGIN;
+export { LOGIN, GET_CURRENCYS, ADD_EXPENSES };
