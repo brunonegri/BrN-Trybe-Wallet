@@ -1,11 +1,11 @@
+/* HEADER COMPONENT */
 .header {
-    border: 2px solid green;
+    /* border: 2px solid green; */
     display: flex ;
     justify-content: space-between;
     align-items: center;
     background-color: #12253b;
     color:white;
-
 }
 
 .header span {
@@ -22,4 +22,11 @@
 
 .title {
     margin-left: 3rem;
+}
+
+/* FORM COMPONENT */
+
+.form-main {
+    background-color: #145b84;
+    height: 100vh;
 }
