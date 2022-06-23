@@ -1,11 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { fetchCurrenciesThunk } from '../actions/index';
+import { fetchCurrenciesThunk, fetchCurrenciesRate } from '../actions/index';
 
 class Header extends React.Component {
   componentDidMount() {
     const { getCurrencies } = this.props;
+    const { dispatchRates } = this.props;
+    dispatchRates();
     getCurrencies();
   }
 
@@ -48,11 +50,13 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   getCurrencies: () => dispatch(fetchCurrenciesThunk()),
+  dispatchRates: () => dispatch(fetchCurrenciesRate()),
 });
 
 Header.propTypes = {
   email: PropTypes.string.isRequired,
   getCurrencies: PropTypes.func.isRequired,
+  dispatchRates: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

@@ -7,15 +7,21 @@ const userLogin = (value) => ({
   payload: value,
 });
 
+const getCurrencies = (value) => ({
+  type: GET_CURRENCYS,
+  payload: Object.keys(value).filter((moeda) => moeda !== 'USDT'),
+});
+
 const addExpenses = (value) => ({
   type: ADD_EXPENSES,
   payload: value,
 });
 
-const getCurrencies = (value) => ({
-  type: GET_CURRENCYS,
-  payload: value,
-});
+const fetchCurrenciesRate = () => (dispatch) => {
+  fetchApi().then((resp) => {
+    dispatch(addExpenses(resp));
+  });
+};
 
 const fetchCurrenciesThunk = () => (dispatch) => {
   fetchApi().then((resp) => {
@@ -23,4 +29,9 @@ const fetchCurrenciesThunk = () => (dispatch) => {
   });
 };
 
-export { userLogin, addExpenses, getCurrencies, fetchCurrenciesThunk };
+export {
+  userLogin,
+  addExpenses,
+  getCurrencies,
+  fetchCurrenciesThunk,
+  fetchCurrenciesRate };
