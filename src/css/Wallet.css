@@ -1,0 +1,25 @@
+.header {
+    border: 2px solid green;
+    display: flex ;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #12253b;
+    color:white;
+
+}
+
+.header span {
+    /* margin-left: 1rem; */
+}
+
+.user-info {
+    margin-right: 3rem;
+}
+
+.user-email {
+    margin-right: 1rem;
+}
+
+.title {
+    margin-left: 3rem;
+}

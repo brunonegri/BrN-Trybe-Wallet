@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { userLogin } from '../actions';
-import './Login.css';
+import '../css/Login.css';
 
 class Login extends React.Component {
   state = {
@@ -44,9 +44,10 @@ class Login extends React.Component {
     // console.log(this.props);
     const { email, password, disableBtn } = this.state;
     return (
-      <div className="main">
-        <div>
-          <div>
+      <div className="App">
+        <div className="login-form">
+          <h1>Trybe Wallet</h1>
+          <div className="login-email">
             <span>EMAIL</span>
             <input
               data-testid="email-input"
@@ -57,18 +58,19 @@ class Login extends React.Component {
               placeholder="email@example.com"
             />
           </div>
-          <div>
+          <div className="login-password">
             <span>SENHA </span>
             <input
               data-testid="password-input"
               name="password"
               onChange={ this.handleChange }
-              type="text"
+              type="password"
               value={ password }
               placeholder="******"
             />
           </div>
           <button
+            className="login-button"
             type="submit"
             onClick={ this.handleClick }
             disabled={ disableBtn }
