@@ -10,13 +10,14 @@ class Header extends React.Component {
   }
 
   render() {
-    console.log(this.props);
+    // console.log(this.props);
     const { email } = this.props;
     return (
       <div>
+        <h1>TRYBE WALLET</h1>
         <h1 data-testid="email-field">{email}</h1>
-        <p data-testid="total-field">0</p>
-        <p data-testid="header-currency-field">BRL</p>
+        <span data-testid="total-field">0 </span>
+        <span data-testid="header-currency-field">BRL</span>
       </div>
     );
   }
@@ -24,6 +25,7 @@ class Header extends React.Component {
 
 const mapStateToProps = (state) => ({
   email: state.user.email,
+  currency: state.wallet.currencies,
 });
 
 const mapDispatchToProps = (dispatch) => ({

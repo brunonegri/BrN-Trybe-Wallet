@@ -5,7 +5,7 @@ const fetchApi = async () => {
   const data = await resolve.json();
   // console.log(Object.keys(data));
   const filtredCurrencies = Object.keys(data).filter((moeda) => moeda !== 'USDT');
-  console.log(filtredCurrencies);
+  // console.log(filtredCurrencies);
   return filtredCurrencies;
 };
 
