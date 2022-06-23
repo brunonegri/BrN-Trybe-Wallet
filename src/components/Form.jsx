@@ -5,31 +5,17 @@ import { addExpenses } from '../actions';
 
 class Form extends React.Component {
   state = {
-    id: 0,
     value: '',
-    currencies: '',
+    currency: '',
     method: 'Dinheiro',
     tag: 'Alimentação',
     description: '',
     exchangeRates: {},
-    btnDisable: true,
   }
 
   handleChange =({ target }) => {
     const { name, value } = target;
-    this.setState({ [name]: value }, () => this.enableBtn());
-  }
-
-  enableBtn=() => {
-    const { value, description } = this.state;
-    const num = 1;
-    const valueValidate = value.length > num;
-    const descriptionValidate = description.length > num;
-    const validate = valueValidate && descriptionValidate;
-    // console.log(validate);
-    this.setState({
-      btnDisable: !validate,
-    });
+    this.setState({ [name]: value });
   }
 
   handleClick = () => {
@@ -38,14 +24,12 @@ class Form extends React.Component {
     dispatchForm(this.state);
 
     this.setState({
-      id: 0,
       value: '',
-      currencies: '',
+      currency: '',
       method: '',
       tag: '',
       description: '',
       exchangeRates: {},
-      btnDisable: true,
     });
 
     console.log('clicou');
@@ -53,8 +37,8 @@ class Form extends React.Component {
 
   render() {
     // console.log(this.props);
-    const { value, currencies, method, tag, description, btnDisable } = this.state;
-    const { currency } = this.props;
+    const { value, currency, method, tag, description, btnDisable } = this.state;
+    const { currencys } = this.props;
     return (
       <div className="form-main">
         <div className="form-inputs">
@@ -74,11 +58,11 @@ class Form extends React.Component {
             Moeda
             <select
               onChange={ this.handleChange }
-              name="currencies"
-              value={ currencies }
+              name="currency"
+              value={ currency }
               id="currency-input"
             >
-              {currency.map((moeda, index) => <option key={ index }>{ moeda}</option>)}
+              {currencys.map((moeda, index) => <option key={ index }>{ moeda}</option>)}
             </select>
           </label>
           <label htmlFor="method-input">
@@ -92,7 +76,7 @@ class Form extends React.Component {
             >
               <option value="Dinheiro">Dinheiro</option>
               <option value="Cartão de crédito">Cartão de crédito</option>
-              <option value="Cartão de dédito">Cartão de débito</option>
+              <option value="Cartão de débito">Cartão de débito</option>
             </select>
           </label>
           <label htmlFor="tag-input">
@@ -137,17 +121,17 @@ class Form extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  currency: state.wallet.currencies,
+  currencys: state.wallet.currencies,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   dispatchForm: (expense) => dispatch(addExpenses(expense)),
+  dispatchRates: () => dispatch(fetchCurrenciesRate()),
 });
 
 Form.propTypes = {
-  currency: PropTypes.arrayOf(PropTypes.string).isRequired,
+  currencys: PropTypes.arrayOf(PropTypes.string).isRequired,
   dispatchForm: PropTypes.func.isRequired,
-
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Form);

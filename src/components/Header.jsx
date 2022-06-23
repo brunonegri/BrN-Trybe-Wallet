@@ -1,19 +1,33 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { fetchCurrenciesThunk, fetchCurrenciesRate } from '../actions/index';
+import { fetchCurrenciesThunk } from '../actions/index';
 
 class Header extends React.Component {
+  state = {
+    total: 0,
+  }
+
   componentDidMount() {
     const { getCurrencies } = this.props;
-    const { dispatchRates } = this.props;
-    dispatchRates();
     getCurrencies();
+  }
+
+  totalExpenses = () => {
+    const { expenses } = this.props;
+    let acc = 0;
+
+    expenses.forEach(({ value, currency, exchangeRates }) => {
+      acc += parseFloat(value) * parseFloat(exchangeRates[currency].ask);
+    });
+
+    return acc;
   }
 
   render() {
     // console.log(this.props);
     const { email } = this.props;
+    const { total } = this.state;
     return (
       <div className="header">
         <h1 className="title">TRYBE WALLET</h1>
@@ -30,8 +44,9 @@ class Header extends React.Component {
             <span
               className="user-despeses"
               data-testid="total-field"
+              value={ total }
             >
-              0
+              {this.totalExpenses().toFixed(2)}
 
             </span>
             <span data-testid="header-currency-field"> BRL</span>
@@ -46,17 +61,17 @@ class Header extends React.Component {
 const mapStateToProps = (state) => ({
   email: state.user.email,
   currency: state.wallet.currencies,
+  expenses: state.wallet.expenses,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   getCurrencies: () => dispatch(fetchCurrenciesThunk()),
-  dispatchRates: () => dispatch(fetchCurrenciesRate()),
 });
 
 Header.propTypes = {
   email: PropTypes.string.isRequired,
   getCurrencies: PropTypes.func.isRequired,
-  dispatchRates: PropTypes.func.isRequired,
+  expenses: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

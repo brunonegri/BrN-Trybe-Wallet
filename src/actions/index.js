@@ -12,14 +12,13 @@ const getCurrencies = (value) => ({
   payload: Object.keys(value).filter((moeda) => moeda !== 'USDT'),
 });
 
-const addExpenses = (value) => ({
-  type: ADD_EXPENSES,
-  payload: value,
-});
-
-const fetchCurrenciesRate = () => (dispatch) => {
-  fetchApi().then((resp) => {
-    dispatch(addExpenses(resp));
+const addExpenses = (expenses) => async (dispatch) => {
+  const data = await fetchApi();
+  delete data.USDT;
+  expenses.exchangeRates = data;
+  dispatch({
+    type: ADD_EXPENSES,
+    payload: { expenses },
   });
 };
 
@@ -34,4 +33,4 @@ export {
   addExpenses,
   getCurrencies,
   fetchCurrenciesThunk,
-  fetchCurrenciesRate };
+};
