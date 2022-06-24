@@ -1,16 +1,22 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { addExpenses } from '../actions';
+import { addExpenses, fetchCurrenciesThunk } from '../actions';
 
 class Form extends React.Component {
   state = {
+    id: 0,
     value: '',
-    currency: '',
+    currency: 'USD',
     method: 'Dinheiro',
     tag: 'Alimentação',
     description: '',
     exchangeRates: {},
+  }
+
+  componentDidMount() {
+    const { getCurrencies } = this.props;
+    getCurrencies();
   }
 
   handleChange =({ target }) => {
@@ -20,9 +26,11 @@ class Form extends React.Component {
 
   handleClick = () => {
     const { dispatchForm } = this.props;
+    const { id } = this.state;
+    const acc = id + 1;
 
     dispatchForm(this.state);
-
+    this.setState((prev) => ({ ...prev, id: acc }));
     this.setState({
       value: '',
       currency: '',
@@ -36,8 +44,9 @@ class Form extends React.Component {
   }
 
   render() {
-    // console.log(this.props);
-    const { value, currency, method, tag, description, btnDisable } = this.state;
+    console.log(this.props);
+    const { value, currency, method, tag, description } = this.state;
+    console.log(currency);
     const { currencys } = this.props;
     return (
       <div className="form-main">
@@ -54,15 +63,18 @@ class Form extends React.Component {
               placeholder="R$0,00"
             />
           </label>
-          <label htmlFor="currency-input">
+          <label htmlFor="currency">
             Moeda
             <select
+              defaultValue="USD"
               onChange={ this.handleChange }
               name="currency"
               value={ currency }
-              id="currency-input"
+              id="currency"
             >
-              {currencys.map((moeda, index) => <option key={ index }>{ moeda}</option>)}
+              {currencys
+                .map((moeda) => (
+                  <option name={ moeda } key={ moeda } value={ moeda }>{moeda}</option>))}
             </select>
           </label>
           <label htmlFor="method-input">
@@ -108,7 +120,6 @@ class Form extends React.Component {
           </label>
           <button
             onClick={ this.handleClick }
-            disabled={ btnDisable }
             type="submit"
           >
             Adicionar Despesa
@@ -125,13 +136,14 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
+  getCurrencies: () => dispatch(fetchCurrenciesThunk()),
   dispatchForm: (expense) => dispatch(addExpenses(expense)),
-  dispatchRates: () => dispatch(fetchCurrenciesRate()),
 });
 
 Form.propTypes = {
   currencys: PropTypes.arrayOf(PropTypes.string).isRequired,
   dispatchForm: PropTypes.func.isRequired,
+  getCurrencies: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Form);

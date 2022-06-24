@@ -1,16 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { fetchCurrenciesThunk } from '../actions/index';
 
 class Header extends React.Component {
   state = {
     total: 0,
-  }
-
-  componentDidMount() {
-    const { getCurrencies } = this.props;
-    getCurrencies();
   }
 
   totalExpenses = () => {
@@ -25,7 +19,7 @@ class Header extends React.Component {
   }
 
   render() {
-    // console.log(this.props);
+    console.log(this.props);
     const { email } = this.props;
     const { total } = this.state;
     return (
@@ -70,8 +64,9 @@ const mapDispatchToProps = (dispatch) => ({
 
 Header.propTypes = {
   email: PropTypes.string.isRequired,
-  getCurrencies: PropTypes.func.isRequired,
-  expenses: PropTypes.arrayOf(PropTypes.string).isRequired,
+  expenses: PropTypes.arrayOf(PropTypes.shape(
+    PropTypes.objectOf(),
+  )).isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

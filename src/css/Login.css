@@ -26,7 +26,6 @@
 	border-radius: 5px;
 	padding: 5px;
 	margin-left: 1rem;
-
 }
 
 .login-email {
@@ -58,5 +57,5 @@
 	border: none;
 	border-radius: 5px;
 	font-size: 17px;
-	font-weight:bold
+	font-weight: bold;
 }
