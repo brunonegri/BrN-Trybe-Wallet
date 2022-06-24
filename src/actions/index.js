@@ -1,5 +1,5 @@
 // Coloque aqui suas actions
-import { LOGIN, ADD_EXPENSES, GET_CURRENCYS } from './actionTypes';
+import { LOGIN, ADD_EXPENSES, GET_CURRENCYS, DELETE_EXPENSE } from './actionTypes';
 import fetchApi from '../services/Api';
 
 const userLogin = (value) => ({
@@ -22,6 +22,11 @@ const addExpenses = (expenses) => async (dispatch) => {
   });
 };
 
+const deleteExpense = (id) => ({
+  type: DELETE_EXPENSE,
+  payload: id,
+});
+
 const fetchCurrenciesThunk = () => (dispatch) => {
   fetchApi().then((resp) => {
     dispatch(getCurrencies(resp));
@@ -33,4 +38,5 @@ export {
   addExpenses,
   getCurrencies,
   fetchCurrenciesThunk,
+  deleteExpense,
 };

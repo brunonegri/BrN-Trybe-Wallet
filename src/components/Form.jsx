@@ -3,13 +3,15 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { addExpenses, fetchCurrenciesThunk } from '../actions';
 
+const alimentacao = 'Alimentação';
+
 class Form extends React.Component {
   state = {
     id: 0,
     value: '',
     currency: 'USD',
     method: 'Dinheiro',
-    tag: 'Alimentação',
+    tag: alimentacao,
     description: '',
     exchangeRates: {},
   }
@@ -33,9 +35,9 @@ class Form extends React.Component {
     this.setState((prev) => ({ ...prev, id: acc }));
     this.setState({
       value: '',
-      currency: '',
-      method: '',
-      tag: '',
+      currency: 'USD',
+      method: 'Dinheiro',
+      tag: alimentacao,
       description: '',
       exchangeRates: {},
     });
@@ -99,7 +101,7 @@ class Form extends React.Component {
               value={ tag }
               id="tag-input"
             >
-              <option value="Alimentação">Alimentação</option>
+              <option value={ alimentacao }>{alimentacao}</option>
               <option value="Lazer">Lazer</option>
               <option value="Trabalho">Trabalho</option>
               <option value="Transporte">Transporte</option>
