@@ -44,9 +44,9 @@ class Form extends React.Component {
   }
 
   render() {
-    console.log(this.props);
+    // console.log(this.props);
     const { value, currency, method, tag, description } = this.state;
-    console.log(currency);
+    // console.log(currency);
     const { currencys } = this.props;
     return (
       <div className="form-main">
@@ -66,7 +66,6 @@ class Form extends React.Component {
           <label htmlFor="currency">
             Moeda
             <select
-              defaultValue="USD"
               onChange={ this.handleChange }
               name="currency"
               value={ currency }
