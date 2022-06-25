@@ -13,7 +13,7 @@ class Wallet extends React.Component {
     // console.log(this.props);
     const { editor } = this.props;
     return (
-      <div>
+      <div className="wallet-container">
         <Header />
         {editor === true ? <FormEdit /> : <Form />}
         <Table />

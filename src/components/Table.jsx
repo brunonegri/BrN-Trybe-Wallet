@@ -51,7 +51,7 @@ class Table extends React.Component {
     // console.log(expenses);
     // console.log(this.props);
     return (
-      <table>
+      <table className="table-expenses">
         <thead>
           <tr>
             <th>Descrição</th>
