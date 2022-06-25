@@ -5,7 +5,7 @@ import Header from '../components/Header';
 import Form from '../components/Form';
 import FormEdit from '../components/FormEdit';
 
-// import '../css/Wallet.css';
+import '../css/Wallet.css';
 import Table from '../components/Table';
 
 class Wallet extends React.Component {

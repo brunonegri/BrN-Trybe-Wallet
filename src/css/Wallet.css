@@ -1,0 +1,41 @@
+/* HEADER COMPONENT */
+.header {
+  align-items: center;
+  background-color: #12253b;
+  color: white;
+
+  /* border: 2px solid green; */
+  display: flex;
+  justify-content: space-between;
+}
+
+.header span {
+
+  /* margin-left: 1rem; */
+}
+
+.user-info {
+  margin-right: 3rem;
+}
+
+.user-email {
+  margin-right: 1rem;
+}
+
+.title {
+  margin-left: 3rem;
+}
+
+/* FORM COMPONENT */
+.form-main {
+  background-color: #145b84;
+
+  /* height: 100vh; */
+}
+
+.form-inputs {
+  align-items: center;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 1rem;
+}

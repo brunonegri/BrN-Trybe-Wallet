@@ -1,0 +1,62 @@
+.App {
+  align-items: center;
+  background-color: #145b84;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+}
+
+.login-form {
+  align-items: center;
+  background-color: #12253b;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 100px 70px;
+}
+
+.login-form h1 {
+  color: white;
+}
+
+.login-form input {
+
+  /* background-color: red; */
+  border: none;
+  border-radius: 5px;
+  margin-left: 1rem;
+  padding: 5px;
+}
+
+.login-email {
+  background-color: #145b84;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+  padding: 15px;
+}
+
+.login-password {
+  background-color: #145b84;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+  padding: 15px;
+}
+
+.login-password span {
+  color: white;
+}
+
+.login-email span {
+  color: white;
+}
+
+.login-button {
+  background-color: white;
+  border: none;
+  border-radius: 5px;
+  color: #145b84;
+  font-size: 17px;
+  font-weight: 100;
+  padding: 15px;
+}
