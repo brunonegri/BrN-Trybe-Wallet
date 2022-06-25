@@ -1,5 +1,13 @@
 // Coloque aqui suas actions
-import { LOGIN, ADD_EXPENSES, GET_CURRENCYS, DELETE_EXPENSE } from './actionTypes';
+import {
+  LOGIN,
+  ADD_EXPENSES,
+  GET_CURRENCYS,
+  DELETE_EXPENSE,
+  EDIT_EXPENSE,
+  ID_TO_EDIT,
+  EDIT_FORM,
+} from './actionTypes';
 import fetchApi from '../services/Api';
 
 const userLogin = (value) => ({
@@ -27,6 +35,20 @@ const deleteExpense = (id) => ({
   payload: id,
 });
 
+const editExpense = (expense) => ({
+  type: EDIT_EXPENSE,
+  payload: { expense },
+});
+
+const editForm = () => ({
+  type: EDIT_FORM,
+});
+
+const getIdToEdit = (id) => ({
+  type: ID_TO_EDIT,
+  payload: { id },
+});
+
 const fetchCurrenciesThunk = () => (dispatch) => {
   fetchApi().then((resp) => {
     dispatch(getCurrencies(resp));
@@ -39,4 +61,7 @@ export {
   getCurrencies,
   fetchCurrenciesThunk,
   deleteExpense,
+  editExpense,
+  getIdToEdit,
+  editForm,
 };
